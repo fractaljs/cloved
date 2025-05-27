@@ -1,0 +1,124 @@
+---
+title: Product
+description: How to add Guidelines for each component
+--- 
+
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { Cards, Card } from "fumadocs-ui/components/card";
+import { Callout } from "fumadocs-ui/components/callout";
+import { HomeIcon } from "lucide-react";
+        
+## Introduction [toc]
+
+This doc site is built with [Fumadocs](https://fumadocs.com). Its built on top of [Next.js](https://nextjs.org) and [MDX](https://mdxjs.com).
+
+
+<Cards>
+  <Card
+    href="https://github.com/design-juspay/clove"
+    title="Github"
+  >
+    This is the Github repo for this site.
+  </Card>
+  <Card href="https://fumadocs.dev/" title="Fumadocs">Refer to the Fumadocs docs for more information</Card>
+</Cards>
+
+## Setup
+
+### Node.js and NPM
+
+You will be needing Node.js, npm, and pnpm installed in your system.
+
+#### Checking Installation
+
+To verify if Node.js, npm, and pnpm are installed on your system, follow these steps:
+
+1. Open your terminal and run the following commands:
+
+```bash
+node --version
+npm --version
+pnpm --version
+```
+
+2. If Node.js is not installed, you'll see a "command not found" error. Install Node.js using Homebrew:
+
+```bash
+brew install node
+```
+
+3. After installation, verify again using the version commands:
+```bash
+node --version
+npm --version
+```
+
+4. For npm, it comes bundled with Node.js installation. If you need to update npm:
+```bash
+npm install -g npm@latest
+```
+
+5. Install pnpm using npm:
+```bash
+npm install -g pnpm
+```
+
+#### Required Versions
+- Node.js: 18.x or higher (LTS version recommended)
+- npm: 9.x or higher
+- pnpm: 8.x or higher
+
+### IDE Setup
+
+Choose and download (if not already downloaded) your preferred IDE:
+
+<Cards>
+  <Card
+    href="https://cursor.sh"
+    title="Cursor"
+  >
+    Cursor is an AI-first code editor built on top of VSCode. It provides enhanced AI capabilities and a modern development experience.
+  </Card>
+  <Card 
+    href="https://code.visualstudio.com/"
+    title="Visual Studio Code"
+  >
+    VSCode is a lightweight but powerful source code editor with built-in support for JavaScript, TypeScript, and Node.js.
+  </Card>
+</Cards>
+
+### GitHub Repository Setup
+
+<Callout type="error">
+  Before proceeding, ensure you have SSH set up for GitHub. If you haven't set up SSH yet, please follow our [SSH Setup Guide](/docs/guidelines/ssh-setup) first.
+</Callout>
+
+1. Clone the repository:
+```bash
+git clone https://github.com/design-juspay/clove.git
+cd clove
+```
+
+2. Install dependencies:
+```bash
+pnpm install
+```
+
+3. Start the development server:
+```bash
+pnpm dev
+```
+
+The site will be available at `http://localhost:3000`
+
+<Tabs items={['Javascript', 'Rust', 'C++']} updateAnchor persist>
+  <Tab id="tab-js" value="Javascript">
+    AlertDemo
+  </Tab>
+  <Tab id="tab-rs" value="Rust">
+    Rust is fast
+  </Tab>
+  <Tab id="tab-cpp" value="C++">
+    `Hello World`
+  </Tab>
+</Tabs>

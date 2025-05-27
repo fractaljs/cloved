@@ -1,0 +1,88 @@
+---
+title: SSH Setup
+description: Guide to set up SSH for GitHub
+---
+
+## Checking SSH Setup
+
+1. Check if you have any existing SSH keys:
+```bash
+ls -la ~/.ssh
+```
+
+Look for files named:
+- `id_rsa` and `id_rsa.pub`
+- `id_ed25519` and `id_ed25519.pub`
+
+2. Test your SSH connection to GitHub:
+```bash
+ssh -T git@github.com
+```
+
+If you see a message like "Hi username! You've successfully authenticated...", you're all set!
+
+## Setting Up SSH
+
+If you don't have SSH keys or need to create new ones:
+
+1. Generate a new SSH key:
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+2. Start the SSH agent:
+```bash
+eval "$(ssh-agent -s)"
+```
+
+3. Add your SSH key to the agent:
+```bash
+ssh-add ~/.ssh/id_ed25519
+```
+
+4. Copy your public key:
+```bash
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+5. Add the SSH key to your GitHub account:
+   - Go to GitHub.com → Settings → SSH and GPG keys
+   - Click "New SSH key"
+   - Give it a title (e.g., "MacBook Pro")
+   - Paste your key into the "Key" field
+   - Click "Add SSH key"
+
+6. Verify the setup:
+```bash
+ssh -T git@github.com
+```
+
+## Troubleshooting
+
+### Permission Issues
+If you get permission errors:
+```bash
+chmod 600 ~/.ssh/id_ed25519
+chmod 644 ~/.ssh/id_ed25519.pub
+```
+
+### SSH Agent Issues
+If the SSH agent isn't running:
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+### Multiple SSH Keys
+If you have multiple SSH keys, create or edit `~/.ssh/config`:
+```bash
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519
+```
+
+## Additional Resources
+
+- [GitHub SSH Documentation](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+- [SSH Key Best Practices](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) 
