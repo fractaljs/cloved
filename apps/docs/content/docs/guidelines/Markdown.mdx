@@ -1,0 +1,188 @@
+---
+title: Markdown
+description: A guide to writing markdown for the docs.
+---
+
+# Markdown Guide
+
+<Card>
+  For more details, see the [Markdown Guide](https://www.markdownguide.org/)
+</Card>
+
+## Table of Contents
+1. [Headings](#headings)
+2. [Paragraphs & Line Breaks](#paragraphs--line-breaks)
+3. [Emphasis (Bold & Italic)](#emphasis-bold--italic)
+4. [Blockquotes](#blockquotes)
+5. [Lists](#lists)
+6. [Links](#links)
+7. [Images](#images)
+8. [Code](#code)
+9. [Tables](#tables)
+10. [Horizontal Rules](#horizontal-rules)
+11. [Escaping Characters](#escaping-characters)
+12. [Best Practices](#best-practices)
+
+---
+
+## Headings
+
+Use `#` for headings. The number of `#` symbols indicates the heading level.
+
+```markdown
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+```
+
+## Paragraphs & Line Breaks
+
+Paragraphs are created by leaving a blank line between blocks of text. To create a line break, end a line with two or more spaces, then press Enter.
+
+```markdown
+This is a paragraph.
+This is another paragraph.
+
+This is a line with a break.  
+This is the next line.
+```
+
+## Emphasis (Bold & Italic)
+
+- *Italic*: `*italic*` or `_italic_`
+- **Bold**: `**bold**` or `__bold__`
+- ***Bold and Italic***: `***bold and italic***`
+
+```markdown
+*italic*  
+**bold**  
+***bold and italic***
+```
+
+## Blockquotes
+
+Use `>` to create blockquotes. Nest blockquotes with additional `>` symbols.
+
+> This is a blockquote.
+>> Nested blockquote.
+
+```markdown
+> This is a blockquote.
+>> Nested blockquote.
+```
+
+## Lists
+
+### Unordered Lists
+Use `-`, `*`, or `+` for unordered lists.
+
+- Item 1
+- Item 2
+  - Subitem 2.1
+  - Subitem 2.2
+
+```markdown
+- Item 1
+- Item 2
+  - Subitem 2.1
+  - Subitem 2.2
+```
+
+### Ordered Lists
+Use numbers followed by a period.
+
+1. First item
+2. Second item
+   1. Subitem 2.1
+   2. Subitem 2.2
+
+```markdown
+1. First item
+2. Second item
+   1. Subitem 2.1
+   2. Subitem 2.2
+```
+
+## Links
+
+```markdown
+[Link Text](https://example.com)
+[Link with Title](https://example.com "Title")
+```
+
+## Images
+
+```markdown
+![Alt Text](https://example.com/image.png)
+![Alt Text](./local-image.png)
+```
+
+## Code
+
+### Inline Code
+Use backticks \` for inline code: `code`
+
+```markdown
+`code`
+```
+
+### Code Blocks
+Use triple backticks for code blocks like in Slack. Optionally, specify the language for syntax highlighting.
+
+```js
+console.log('Hello, world!');
+```
+
+## Tables
+
+| Header 1 | Header 2 |
+|----------|----------|
+| Row 1    | Data     |
+| Row 2    | Data     |
+
+```markdown
+| Header 1 | Header 2 |
+|----------|----------|
+| Row 1    | Data     |
+| Row 2    | Data     |
+```
+
+## Horizontal Rules
+
+Create a horizontal rule with three or more dashes, asterisks, or underscores:
+
+---
+***
+___
+
+```markdown
+---
+***
+___
+```
+
+## Escaping Characters
+
+Use a backslash `\` to escape Markdown characters:
+
+```markdown
+\*Not italic\*
+```
+
+## Best Practices
+- Use headings to organize content.
+- Keep lines under 80-100 characters for readability.
+- Use lists for steps or items.
+- Use code blocks for code, not inline code for large snippets.
+- Add alt text to images for accessibility.
+- Use tables for structured data.
+- Preview your Markdown to check formatting.
+
+---
+
+
+
+
