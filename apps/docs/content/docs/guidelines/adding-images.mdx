@@ -1,0 +1,76 @@
+---
+title: Adding Images to the Docs
+---
+
+<br />
+
+
+### 1. Export the Image from Figma as PNG
+
+1. **Open Figma** and navigate to the image you want to export.
+2. **Select** the specific frame, group, or layer you want to export as an image.
+3. In the right sidebar, scroll down to the **Export** section.
+4. Click the **+** icon to add an export setting if it's not already there.
+5. Set the format to **PNG** (recommended for guidelines).
+6. Click the **Export [Layer/Frame Name]** button.
+7. Save the exported PNG to your computer (remember where you save it).
+
+### 2. Locate the Guidelines Image Directory
+
+1. In your project, go to:
+   ```
+   apps/docs/public/img/guidelines
+   ```
+
+   or
+   <Callout type="info">
+   Press `CMD + P` and type `img`  to see where the other images are located.
+   </Callout>
+2. Here, you'll see folders for different components (e.g., `button`, `menu`).
+
+### 3. Create a Folder for the Component (if needed)
+
+- If a folder for your component **already exists** (e.g., `button`), open it.
+- If it **does not exist**:
+  1. Create a new folder inside `guidelines`.
+  2. Name the folder after your component, using lowercase letters (e.g., `dropdown`, `modal`).
+
+### 4. Add the Image with the Correct Naming Convention
+
+- Place your PNG image inside the relevant component folder.
+- **Naming convention:**
+  - For a "do" image: `DO_<NAME_IN_CAPITAL_WITH_UNDERSCORES>.png`
+  - For a "don't" image: `DONT_<NAME_IN_CAPITAL_WITH_UNDERSCORES>.png`
+
+  **Examples:**
+  - `DO_PROPER_BUTTON_SPACING.png`
+  - `DONT_USE_WRONG_COLOR.png`
+
+### 5. Use the Image in the `Guideline` Component
+
+Instead of referencing the image directly in markdown, you should use the `Guideline` component to display guideline images in your documentation. This component is designed to show both "Do" and "Don't" images side by side, along with helpful labels and pointers.
+
+#### Example Usage (from `Menu.mdx`):
+
+```tsx
+import Guideline from "@/ui/components/Guideline";
+
+<Guideline
+  title="Min width of the menu should be that of the dropdown"
+  doLabel="Allow the menu to take the width of the dropdown"
+  dontLabel="Avoid wrapping menu width to content"
+  doImage="/img/guidelines/menu/DO_MIN_WIDTH.png" // Path to the "do" image
+  dontImage="/img/guidelines/menu/DONT_MIN_WIDTH.png" // Path to the "don't" image
+/>
+```
+
+- The `doImage` and `dontImage` props should point to the image paths you added in the previous steps.
+- Make sure the path matches the folder and filename you used in `public/img/guidelines/<component>/<image_name>.png`.
+
+This approach keeps your documentation consistent and visually clear for users.
+
+---
+
+By following these steps, you ensure all guideline images are organized and named consistently, making them easy to find and reference in the documentation.
+
+

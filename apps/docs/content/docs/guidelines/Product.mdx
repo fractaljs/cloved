@@ -15,7 +15,7 @@ This doc site is built with [Fumadocs](https://fumadocs.com). Its built on top o
 
 <Cards>
   <Card
-    href="https://github.com/design-juspay/clove"
+    href="https://github.com/fractaljs/cloved"
     title="Github"
   >
     This is the Github repo for this site.
@@ -93,32 +93,25 @@ Choose and download (if not already downloaded) your preferred IDE:
   Before proceeding, ensure you have SSH set up for GitHub. If you haven't set up SSH yet, please follow our [SSH Setup Guide](/docs/guidelines/ssh-setup) first.
 </Callout>
 
-1. Clone the repository:
+1. **Create a folder for your project and open the terminal there:**
+   - Choose or create a directory where you want to keep your project (for example, `Projects` or `Work`).
+   - Open your file explorer, create a new folder (e.g., `cloved`), and open the terminal in that folder.
+   - On macOS, you can right-click the folder and select "New Terminal at Folder" (or use the menu in Finder: `Go > Utilities > Terminal`, then use `cd` to navigate to your folder).
+
+2. Clone the repository:
 ```bash
-git clone https://github.com/design-juspay/clove.git
-cd clove
+git clone https://github.com/fractaljs/cloved.git
+cd cloved
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 ```bash
 pnpm install
 ```
 
-3. Start the development server:
+4. Start the development server:
 ```bash
 pnpm dev
 ```
 
 The site will be available at `http://localhost:3000`
-
-<Tabs items={['Javascript', 'Rust', 'C++']} updateAnchor persist>
-  <Tab id="tab-js" value="Javascript">
-    AlertDemo
-  </Tab>
-  <Tab id="tab-rs" value="Rust">
-    Rust is fast
-  </Tab>
-  <Tab id="tab-cpp" value="C++">
-    `Hello World`
-  </Tab>
-</Tabs>

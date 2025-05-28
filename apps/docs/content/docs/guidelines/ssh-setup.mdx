@@ -3,6 +3,22 @@ title: SSH Setup
 description: Guide to set up SSH for GitHub
 ---
 
+<Callout type="warning">
+  If you already have SSH keys, you can skip the following steps.
+</Callout>
+
+## Cloning the Repository Using HTTPS
+
+If you haven't set up SSH yet, you can still clone the repository using HTTPS:
+
+```bash
+git clone https://github.com/fractaljs/cloved.git
+```
+
+You will be prompted for your GitHub username and password (or a personal access token if you have 2FA enabled) when you push or pull changes.
+
+If you want to avoid entering your credentials every time, I recommend setting up SSH (see below).
+
 ## Checking SSH Setup
 
 1. Check if you have any existing SSH keys:
