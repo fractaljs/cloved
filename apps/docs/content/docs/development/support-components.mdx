@@ -1,0 +1,145 @@
+---
+title: Adding support for ThemeProvider
+description: How to support ThemeProvider in Blend Components
+---
+
+## Define component tokens type
+
+For each component, add a strongly typed component tokens type in `<component-name>.tokens.tsx` file.
+
+Make sure that you use `[key in ...]` while defining the type to make the type is extensible.
+
+```tsx title="tag.tokens.tsx"
+export type TagTokensType = Readonly<{
+  background: {
+    [key in TagVariant]: {
+      [key in TagColor]: CSSObject["color"];
+    };
+  };
+  color: {
+    [key in TagVariant]: {
+      [key in TagColor]: CSSObject["color"];
+    };
+  };
+  ... other tokens
+}>;
+```
+
+<Callout type="info">
+  This ensures that when a new variant or color is added to the component, the type is automatically updated.
+</Callout>
+
+### Token Structure
+
+Always follow the following structure for the component tokens:
+
+```tsx 
+$component.[$target].$propert.[$variant].[$type].[$state]
+
+// Items in [] are optional.
+// $target: The target within the component for example: chart header, tab trigger etc.
+// $property: The CSS property within the target for example: background, color, border etc.
+// $variant: The variant of the property for example: primary, secondary, tertiary etc. 
+// $type: The type of the property for example: iconOnly, noContainer etc. 
+// $state: The state of the property for example: hover, active, disabled etc.
+
+// Example:
+$component_name: {
+  $target: {  
+    $property: {
+      $variant: {
+        $type: {
+          $state: Value referenced from the foundation tokens.
+        }
+      }
+    }
+  }
+}
+```
+
+
+## Add a function to generate the component tokens from the foundation tokens
+
+After defining the component tokens type, you need to add a function to generate the component tokens from the foundation tokens.
+
+This function is used in the `ThemeProvider` to generate the component tokens for each component. Refer to `initTokens()` function in `ThemeProvider` method for more details.
+
+```tsx title="tag.tokens.tsx"
+export const getTagTokens = (foundationToken: ThemeType): TagTokensType => {
+  return {
+    background: {
+      noFill: {
+        neutral: foundationToken.colors.gray[0],
+        // ... other Tag colors ...
+      },
+      attentive: {
+        neutral: foundationToken.colors.gray[950],
+        // ... other Tag colors ...
+      },
+      subtle: {
+        neutral: foundationToken.colors.gray[50],
+        // ... other Tag colors ...
+      },
+    },
+    // ... other tokens
+  }
+
+```
+
+<Callout type="info">
+  This ensures that the component tokens are generated from the actual foundation tokens.
+</Callout>
+
+
+## Add the component tokens to the ThemeProvider
+
+Once you have created the types and the function to generate the component tokens, you need to add the component tokens to the `ThemeProvider`.
+
+Go to `ThemeProvider` and add modify the `initTokens()` function to include the component tokens.
+
+```tsx title="ThemeProvider.tsx" 
+const initTokens = (
+  componentTokens: ComponentTokenType,
+  foundationTokens: ThemeType
+): Required<ComponentTokenType> => {
+  return {
+    TAGS: componentTokens.TAGS ?? getTagTokens(foundationTokens),
+    // add supprort for other components here
+  };
+};
+```
+<Callout type="info">
+  `initTokens()` function checks if the user has provided a compoennt Token for the component. If so, it takes that value. Otherwise, the component tokens are generated from the actual foundation tokens.
+</Callout>
+
+
+
+## Consume the component tokens in the component
+
+Once you have added the component tokens to the `ThemeProvider`, you can consume the component tokens in the component using the `useComponentToken(<component-name>)` hook.`
+
+```tsx title="tag.tsx"
+const Tag = () => {
+  const tagTokens = useComponentToken("TAGS"); 
+
+  // ... use the tagTokens to extract the styles
+
+  return (
+    <Block 
+      gap={tagTokens.gap[size]}
+      height={tagTokens.height[size]}
+      padding={tagTokens.padding[size]}
+      backgroundColor={tagTokens.background[variant][color]}
+      color={tagTokens.color[variant][color]}
+      border={`${tagTokens.borderWidth[variant][color]}px solid
+               ${tagTokens.borderColor[variant][color]}`}
+    >
+      //... Tag content
+    </Block>
+  );
+};
+```
+
+<Callout type="info">
+  `useComponentToken(<component-name>)` hook returns the resolved component tokens for the component in the context.
+</Callout>

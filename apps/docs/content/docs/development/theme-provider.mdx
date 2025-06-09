@@ -1,0 +1,147 @@
+---
+title: Theme Provider
+description: Quickly adapt Blend Components to your brand
+---
+
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+`ThemeProvider` lets you quickly style Blend components according to your brand or requirements. It is fundamental to the white-labeling of the components.
+
+```tsx
+import { ThemeProvider } from "Blend-V1";
+
+<ThemeProvider 
+  foundationTokens={BRAND_FOUNDATION_TOKENS} 
+  componentTokens={BRAND_COMPONENT_TOKENS}
+>
+  <App /> 
+</ThemeProvider>
+```
+
+<Callout type="info">
+  All Blend components inside the App will be themed according to the tokens provided.
+</Callout>
+
+
+## API Reference
+
+`ThemeProvider` accepts two props:
+- `foundationTokens`: to setup base design tokens (colors, spacing, typography) for your theme/brand
+- `componentTokens`: to style specific components using the foundation tokens
+
+
+### Foundation Tokens
+
+Serves as the base design tokens for your theme/brand. Usually comes from your design file (Figma, Sketch, etc.).
+
+Blend comes with a default set of foundation tokens that serves the `Euler Dashboard` theme which is also the default theme for the `Blend` components.
+
+
+
+
+
+
+
+
+
+
+### Component Tokens
+
+
+
+
+
+
+The theme system in Blend is built on two core components: `ThemeContext` and `ThemeProvider`. This system enables complete white-labeling of components through a token-based approach.
+
+## Core Components
+
+### ThemeContext
+`ThemeContext` provides the foundation for theming by exposing:
+- `foundationTokens`: Base design tokens (colors, spacing, typography)
+- `componentTokens`: Component-specific design tokens
+
+### ThemeProvider
+`ThemeProvider` is the wrapper component that initializes and provides theme values to the application.
+
+```tsx
+<ThemeProvider
+  foundationTokens={customTheme}
+  componentTokens={{
+    TAGS: customTagTokens
+  }}
+>
+  <App />
+</ThemeProvider>
+```
+
+## Adding Component Theming Support
+
+To add theming support to a new component:
+
+1. Define component tokens type in `ThemeContext.tsx`:
+```tsx
+type ComponentTokenType = {
+  TAGS?: TagTokensType;
+  YOUR_COMPONENT?: YourComponentTokensType;
+}
+```
+
+2. Add token initialization in `ThemeProvider.tsx`:
+```tsx
+const initTokens = (
+  componentTokens: ComponentTokenType,
+  foundationTokens: ThemeType
+): Required<ComponentTokenType> => {
+  return {
+    TAGS: componentTokens.TAGS ?? getTagTokens(foundationTokens),
+    YOUR_COMPONENT: componentTokens.YOUR_COMPONENT ?? getYourComponentTokens(foundationTokens),
+  };
+};
+```
+
+3. Create token getter function:
+```tsx
+export const getYourComponentTokens = (theme: ThemeType): YourComponentTokensType => ({
+  // Define your component tokens using theme values
+});
+```
+
+4. Use in component:
+```tsx
+const YourComponent = () => {
+  const componentTokens = useComponentToken("YOUR_COMPONENT");
+  return (
+    <div style={{ 
+      color: componentTokens.color,
+      // ... other token values
+    }}>
+      {/* Component content */}
+    </div>
+  );
+};
+```
+
+## Token Structure
+
+Component tokens should be organized by:
+- Variants (e.g., primary, secondary)
+- Sizes (e.g., sm, md, lg)
+- States (e.g., hover, active)
+- Properties (e.g., color, spacing)
+
+Example:
+```tsx
+type YourComponentTokensType = {
+  color: {
+    [Variant.PRIMARY]: string;
+    [Variant.SECONDARY]: string;
+  };
+  spacing: {
+    [Size.SM]: string;
+    [Size.MD]: string;
+  };
+};
+```
+
+This structure ensures consistent theming across components while maintaining flexibility for white-labeling. 

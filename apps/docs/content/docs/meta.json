@@ -1,3 +1,11 @@
 {
-  "pages": ["index", "---", "guidelines", "---", "components"]
+  "pages": [
+    "index",
+    "---",
+    "development",
+    "---",
+    "guidelines",
+    "---",
+    "components"
+  ]
 }
